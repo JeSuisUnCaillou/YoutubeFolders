@@ -32,3 +32,21 @@ var get_all_channels_in_page = function(){
 	})
 	return channels
 }
+
+//Add buttons to each channel in /feed/channels page
+var add_all_channels_buttons = function(){
+	var href_substring = '/channel/'
+	var channel_divs = $("a[href^='"+href_substring+"']")
+	
+	channel_divs.each(function(index, channel_div){
+		channel_id = $(channel_div).attr('href').substr(href_substring.length);
+		var container = $(channel_div).closest("ytd-channel-renderer").find("#subscribe-button")
+		
+		container.append("<paper-button data-channel-id='"+channel_id+"' role='button' class='add-tags-button style-scope ytd-subscribe-button-renderer' tabindex='0' animated>FOLDERS</button>")
+		
+		console.log(container)
+	})
+}
+
+//Actually add the buttons when page is ready
+add_all_channels_buttons()
