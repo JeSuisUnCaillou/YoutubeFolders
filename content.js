@@ -2,10 +2,10 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
 		//Get all channels ids
-		var channels = get_all_channels_in_page()
+		//var channels = get_all_channels_in_page()
 		
-		send_to_back("save_data", channels)
-		send_to_back("get_data")
+		//send_to_back("save_data", channels)
+		//send_to_back("get_data")
 		
     } else if (request.message === "data_saved"){
 		console.log("data saved !")
@@ -42,11 +42,13 @@ var add_all_channels_buttons = function(){
 		channel_id = $(channel_div).attr('href').substr(href_substring.length);
 		var container = $(channel_div).closest("ytd-channel-renderer").find("#subscribe-button")
 		
-		container.append("<paper-button data-channel-id='"+channel_id+"' role='button' class='add-tags-button style-scope ytd-subscribe-button-renderer' tabindex='0' animated>FOLDERS</button>")
+		container.append("<paper-button data-channel-id='"+channel_id+"' role='button' class='youtube-folders-button style-scope ytd-subscribe-button-renderer' tabindex='0' animated>FOLDERS</button>")
 		
-		console.log(container)
+		//console.log(container)
 	})
 }
 
 //Actually add the buttons when page is ready
 add_all_channels_buttons()
+
+
