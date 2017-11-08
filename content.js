@@ -4,6 +4,8 @@ chrome.runtime.onMessage.addListener(
       var firstHref = $("a[href^='/channel/']").eq(0).attr("href");
 
       console.log(firstHref);
+	  
+	  chrome.runtime.sendMessage({"message": "open_new_tab", "url": "https://www.youtube.com" + firstHref});
     }
   }
 );
