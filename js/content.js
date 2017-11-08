@@ -43,8 +43,6 @@ var add_all_channels_buttons = function(){
 		var container = $(channel_div).closest("ytd-channel-renderer").find("#subscribe-button")
 		
 		container.append("<paper-button data-channel-id='"+channel_id+"' role='button' class='youtube-folders-button style-scope ytd-subscribe-button-renderer' tabindex='0' animated>FOLDERS</button>")
-		
-		//console.log(container)
 	})
 }
 
