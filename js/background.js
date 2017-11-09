@@ -1,5 +1,5 @@
 
-// Called when the user clicks on the browser action.
+// Called when the user clicks on the browser action. (icon of the extension in browser toolbar)
 chrome.browserAction.onClicked.addListener(function(tab) {
   // Send a message to the active tab
   send_to_current_page("clicked_browser_action")

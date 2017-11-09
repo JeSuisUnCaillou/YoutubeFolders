@@ -1,10 +1,22 @@
 $(document).ready(function(){
 	//Add the modal to DOM
-	$("ytd-page-manager#page-manager").prepend("<div class='modal' id='youtube-folders-form'><div class='modal-content'><span class='close'>&times;</span><p>Some text in the Modal..</p></div></div>")
+	$("ytd-page-manager#page-manager").prepend(
+		"<div class='modal' id='youtube-folders-form'>"+
+			"<div class='modal-content'>"+
+				"<span class='close'>&times;</span>"+
+				"<p>Some text in the Modal..</p>"+
+				"<div>"+
+					"<input type='text'></input>"+
+					"<input type='submit' value='+' id='add-youtube-folder-button' data-channel-id=''>"+
+				"</div>"+
+			"</div>"+
+		"</div>"
+	)
 
 	// Get the modal
 	var modal = document.getElementById('youtube-folders-form');
 	var modal_content = $(modal).find(".modal-content")
+	var add_folder_button = $(modal).find("#add-youtube-folder-button")
 
 	// Get the buttons that opens the modal
 	var btns = $(".youtube-folders-button")
@@ -18,7 +30,7 @@ $(document).ready(function(){
 		modal.style.display = "block";
 		//Update the id of the channel in modal
 		var channel_id = $(this).attr('data-channel-id')
-		modal_content.append(channel_id)
+		add_folder_button.attr('data-channel-id', channel_id)
 	})
 
 	// When the user clicks on <span> (x), close the modal
