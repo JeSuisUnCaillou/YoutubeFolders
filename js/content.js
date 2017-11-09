@@ -5,10 +5,6 @@ $(document).ready(function(){
 	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 		if( request.message === "clicked_browser_action" ) {
-			//Get all channels ids
-			//var channels = get_all_channels_in_page()
-			
-			//send_to_back("save_data", channels)
 			send_to_back("get_data")
 			
 		} else if (request.message === "data_saved"){
@@ -16,15 +12,8 @@ $(document).ready(function(){
 			console.log(request.data)
 			
 		} else if (request.message === "give_data"){
-			//
-			for(var key in request.data){
-				var val = request.data[key]
-				if(key in current_data){
-					current_data[key].push(val)
-				} else {
-					current_data[key] = [val]
-				}
-			}
+			//update the current data FUCK J'UPDATE PAS LA MEMOIRE SYNC QUEL CON
+			current_data = request.data
 			console.log("current_data : ")
 			console.log(current_data)
 		}
@@ -39,15 +28,6 @@ $(document).ready(function(){
 		})
 	}
 	
-
-	//Get all channels ids in page
-	/*var get_all_channels_in_page = function(){
-		var href_substring = '/channel/'
-		var channels = $("a[href^='"+href_substring+"']").map(function() {
-			return $(this).attr('href').substr(href_substring.length);
-		})
-		return channels
-	}*/
 
 	//Add buttons to each channel in /feed/channels page
 	var add_all_channels_buttons = function(){

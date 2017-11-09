@@ -12,12 +12,29 @@ chrome.runtime.onMessage.addListener(
     if( request.message === "open_new_tab" ) {
       chrome.tabs.create({"url": request.url});
     }
-	//called save some data
+	//called to save some data
 	else if( request.message === "save_data" ) {
-	  chrome.storage.sync.set({ "YoutubeFolders": request.data }, function(){
-	     // Send a message to the active tab if sucessful save
-		  send_to_current_page("data_saved", request.data)
-	  });
+	  
+	  chrome.storage.sync.get("YoutubeFolders", function(items){
+		  var previous_data = items["YoutubeFolders"]
+		  
+		  var new_data = previous_data
+		  
+		  for(key in request.data){
+			  var val = request.data[key]
+			  if(key in previous_data){
+				  new_data[key].push(val)
+			  } else {
+				  new_data[key] = [val]
+			  }
+		  }
+			
+		  chrome.storage.sync.set({ "YoutubeFolders": new_data }, function(){
+			send_to_current_page("data_saved", new_data)
+		  })
+	  })
+	  
+	  
     }
 	//called to get some data
 	else if( request.message === "get_data" ) {
