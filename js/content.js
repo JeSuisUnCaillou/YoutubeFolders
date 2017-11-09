@@ -9,14 +9,24 @@ $(document).ready(function(){
 			//var channels = get_all_channels_in_page()
 			
 			//send_to_back("save_data", channels)
-			//send_to_back("get_data")
+			send_to_back("get_data")
 			
 		} else if (request.message === "data_saved"){
 			console.log("data saved : ")
 			console.log(request.data)
 			
 		} else if (request.message === "give_data"){
-			current_data = request.data
+			//
+			for(var key in request.data){
+				var val = request.data[key]
+				if(key in current_data){
+					current_data[key].push(val)
+				} else {
+					current_data[key] = [val]
+				}
+			}
+			console.log("current_data : ")
+			console.log(current_data)
 		}
 	  }
 	);

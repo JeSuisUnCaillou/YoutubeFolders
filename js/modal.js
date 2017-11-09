@@ -4,7 +4,7 @@ $(document).ready(function(){
 		"<div class='modal' id='youtube-folders-form'>"+
 			"<div class='modal-content'>"+
 				"<span class='close'>&times;</span>"+
-				"<p>Some text in the Modal..</p>"+
+				"<p>Add a folder to this channel</p>"+
 				"<div>"+
 					"<input type='text' id='add-youtube-folder-field'></input>"+
 					"<input type='submit' value='+' id='add-youtube-folder-button' data-channel-id=''>"+
