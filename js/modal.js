@@ -19,6 +19,8 @@ $(document).ready(function(){
 	var add_folder_button = $(modal).find("#add-youtube-folder-button")
 	var add_folder_field = $(modal).find("#add-youtube-folder-field")
 	
+	//////////////////////////////////////////////////////////////////////////
+	// MODAL OPEN/CLOSE
 
 	// Get the buttons that opens the modal
 	var btns = $(".youtube-folders-button")
@@ -47,10 +49,26 @@ $(document).ready(function(){
 		}
 	}
 	
+	
+	//////////////////////////////////////////////////////////////////////////
+	// MODAL CONTENT
+
+	//Send messages to background.js (COPIED CODE NOT GOOD)
+	var send_to_back = function(message, data){
+		chrome.runtime.sendMessage({
+			"message": message,
+			"data": data
+		})
+	}
+	
 	// When the user clicks on the add folder button
 	add_folder_button.click(function(event){
 		var folder_name = add_folder_field.val()
-		console.log(folder_name)
+		var channel_id = add_folder_button.attr('data-channel-id')
+		var data = {}
+		data[folder_name] = channel_id
+		send_to_back("save_data", data)
+		add_folder_field.val('')
 	})
 
 })

@@ -16,13 +16,13 @@ chrome.runtime.onMessage.addListener(
 	else if( request.message === "save_data" ) {
 	  chrome.storage.sync.set({ "YoutubeFolders": request.data }, function(){
 	     // Send a message to the active tab if sucessful save
-		  send_to_current_page("data_saved")
+		  send_to_current_page("data_saved", request.data)
 	  });
     }
 	//called to get some data
 	else if( request.message === "get_data" ) {
 		chrome.storage.sync.get("YoutubeFolders", function(items){
-			send_to_current_page("data", items["YoutubeFolders"])
+			send_to_current_page("give_data", items["YoutubeFolders"])
 		});
 	}
   }
