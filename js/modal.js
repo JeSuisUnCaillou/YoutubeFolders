@@ -6,7 +6,7 @@ $(document).ready(function(){
 				"<span class='close'>&times;</span>"+
 				"<p>Some text in the Modal..</p>"+
 				"<div>"+
-					"<input type='text'></input>"+
+					"<input type='text' id='add-youtube-folder-field'></input>"+
 					"<input type='submit' value='+' id='add-youtube-folder-button' data-channel-id=''>"+
 				"</div>"+
 			"</div>"+
@@ -17,6 +17,8 @@ $(document).ready(function(){
 	var modal = document.getElementById('youtube-folders-form');
 	var modal_content = $(modal).find(".modal-content")
 	var add_folder_button = $(modal).find("#add-youtube-folder-button")
+	var add_folder_field = $(modal).find("#add-youtube-folder-field")
+	
 
 	// Get the buttons that opens the modal
 	var btns = $(".youtube-folders-button")
@@ -44,5 +46,11 @@ $(document).ready(function(){
 			modal.style.display = "none";
 		}
 	}
+	
+	// When the user clicks on the add folder button
+	add_folder_button.click(function(event){
+		var folder_name = add_folder_field.val()
+		console.log(folder_name)
+	})
 
 })
